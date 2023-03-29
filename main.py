@@ -51,6 +51,27 @@ def count_safetyzone(g):
                 count += 1
     return count
 
+def bfs(graph):
+    queue = deque()
+    #2인 값만 좌표 넣기
+    virus_list = findindex_virus(graph)
+    for i in virus_list:
+        queue.append((i[0], i[1]))
+    while queue:
+        x, y = queue.popleft()
+        if graph[x][y] == 2:
+            if (x+1) >= 0 and y >= 0 and x+1 < n and y < m and graph[x+1][y] == 0: #DOWN
+                graph[x+1][y] = 2
+                queue.append((x+1, y))
+            if x >= 0 and (y+1) >= 0 and x < n and y+1 < m and graph[x][y+1] == 0: #RIGHT
+                graph[x][y+1] = 2
+                queue.append((x, y+1))
+            if (x-1) >= 0 and y >= 0 and x-1 < n and y < m and graph[x-1][y] == 0: #UP
+                graph[x-1][y] = 2
+                queue.append((x-1, y))
+            if x >= 0 and (y-1) >= 0 and x < n and y-1 < m and graph[x][y-1] == 0: #LEFT
+                graph[x][y-1] = 2
+                queue.append((x, y-1))
 
 # print(wall_setup)
 # print(findindex_virus(graph))
