@@ -10,7 +10,7 @@ for _ in range(n):
 
 graph_original = copy.deepcopy(graph_g)
 
-def findindex_virus(g):
+def findindex_virus_edit(g):
     index_xy=[(i,j) for i in range(n) for j in range(m) if g[i][j]==2]
     return index_xy
 
@@ -54,7 +54,7 @@ def count_safetyzone(g):
 def bfs(graph):
     queue = deque()
     #2인 값만 좌표 넣기
-    virus_list = findindex_virus(graph)
+    virus_list = findindex_virus_edit(graph)
     for i in virus_list:
         queue.append((i[0], i[1]))
     while queue:
